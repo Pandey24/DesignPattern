@@ -1,4 +1,3 @@
-
 /* Online C# Compiler and Editor https://www.tutorialspoint.com/compile_csharp_online.php */
 /* Online C# Compiler and Editor https://www.w3schools.com/cs/trycs.php?filename=demo_compiler */
 using System.IO;
@@ -72,7 +71,7 @@ class Program
 {
     static void Main()
     {
-             AbstractFactory ab=new AbstractFactory();
+        AbstractFactory ab=new AbstractFactory();
       IcarFactory IcarFactory=ab.getFactory("EC");
       Icar car=IcarFactory.getInstance(20);
       Console.WriteLine ("EC car speed :"+car.getspeed());
