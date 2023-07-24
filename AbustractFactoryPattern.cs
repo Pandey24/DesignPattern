@@ -1,8 +1,9 @@
 
-/* Online C# Compiler and Editor */
+/* Online C# Compiler and Editor https://www.tutorialspoint.com/compile_csharp_online.php */
+/* Online C# Compiler and Editor https://www.w3schools.com/cs/trycs.php?filename=demo_compiler */
 using System.IO;
 using System;
-namespace fa
+namespace AbsFactory
 {
 public interface Icar
   {
@@ -44,8 +45,8 @@ public class LC2:Icar
   {
     public Icar getInstance(int price)
     {
-      if(price > 1 && price <= 2) return EC1;
-      else   if(price > 2 && price >=2.5) return EC2;
+      if(price > 1 && price <= 2) return new  EC1();
+      else   if(price > 2 && price >=2.5) return new EC2();
       return null;
     }
   }
@@ -53,8 +54,8 @@ public class LC2:Icar
   {
     public Icar getInstance(int price)
     {
-      if(price > 3 && price <= 3.5) return LC1;
-      else   if(price > 3.5 && price >=4) return LC2;
+      if(price > 3 && price <= 3.5) return new LC1();
+      else   if(price > 3.5 && price >=4) return new LC2();
         return null;
     }
   }
@@ -62,8 +63,8 @@ public class LC2:Icar
   {
     public IcarFactory getFactory(string value)
     {
-      if(value=="EC") return ECarFactory;
-      else  if(value=="LC") return LCarFactory;
+      if(value=="EC") return new ECarFactory();
+      else  if(value=="LC") return new LCarFactory();
        return null;
     }
   }
@@ -71,10 +72,11 @@ class Program
 {
     static void Main()
     {
-           AbstractFactory ab=new AbstractFactory();
-      IcarFactory=ab.getFactory("EC");
-      Icar car=IcarFactory.getInstance(2.5);
+             AbstractFactory ab=new AbstractFactory();
+      IcarFactory IcarFactory=ab.getFactory("EC");
+      Icar car=IcarFactory.getInstance(20);
       Console.WriteLine ("EC car speed :"+car.getspeed());
+        Console.WriteLine("Hello, World!");
         Console.WriteLine("Hello, World!");
     }
 }
