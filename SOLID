@@ -1,0 +1,144 @@
+//a solid principle refers to the SOLID principles, a set of five design principles that aim to make software systems more maintainable, flexible, and understandable.
+//1.Single Responsibility Principle (SRP): A class should have only one reason to change, meaning it should have a single responsibility or purpose.
+// Violation of SRP
+public class Customer
+{
+    public string Name { get; set; }
+    public void AddCustomer() { /* Add customer to the database */ }
+    public void ProcessPayment() { /* Process payment */ }
+}
+In this example, the Customer class handles both customer data management and payment processing. To adhere to SRP, we can split it into two classes:
+// Adhering to SRP
+public class Customer
+{
+    public string Name { get; set; }
+}
+
+public class PaymentProcessor
+{
+    public void ProcessPayment() { /* Process payment */ }
+}
+
+//2.Open-Closed Principle (OCP): Software entities (classes, modules, functions) should be open for extension but closed for modification. This principle promotes the idea of designing code that can be easily extended without modifying existing code.
+// Violation of OCP: Need to modify the base class to add a new shape
+public class Shape
+{
+    public virtual double CalculateArea()
+    {
+        return 0;
+    }
+}
+
+public class Rectangle : Shape
+{
+    public override double CalculateArea()
+    {
+        // Calculate area of rectangle
+        return width * height;
+    }
+}
+
+// Adhering to OCP: Extending functionality without modifying the base class
+public interface IShape
+{
+    double CalculateArea();
+}
+
+public class Rectangle : IShape
+{
+    public double CalculateArea()
+    {
+        // Calculate area of rectangle
+        return width * height;
+    }
+}
+
+public class Circle : IShape
+{
+    public double CalculateArea()
+    {
+        // Calculate area of circle
+        return Math.PI * radius * radius;
+    }
+}
+
+//3.Liskov Substitution Principle (LSP): Subtypes must be substitutable for their base types. This principle ensures that objects of a superclass can be replaced with objects of its subclasses without affecting the correctness of the program.
+using System;
+
+public class Shape
+{
+    public virtual double GetArea()
+    {
+        return 0;
+    }
+}
+
+public class Rectangle : Shape
+{
+    public double Width { get; set; }
+    public double Height { get; set; }
+
+    public override double GetArea()
+    {
+        return Width * Height;
+    }
+}
+
+public class Program
+{
+    public static double CalculateTotalArea(Shape[] shapes)
+    {
+        double totalArea = 0;
+        foreach (var shape in shapes)
+        {
+            totalArea += shape.GetArea();
+        }
+        return totalArea;
+    }
+
+    public static void Main()
+    {
+        // Create an array of shapes including rectangles
+        Shape[] shapes = new Shape[]
+        {
+            new Rectangle { Width = 5, Height = 4 },
+            new Rectangle { Width = 3, Height = 7 },
+            new Shape(), // A generic shape with area 0
+        };
+
+        // Calculate the total area of all shapes
+        double totalArea = CalculateTotalArea(shapes);
+
+        Console.WriteLine("Total Area of Shapes: " + totalArea);
+    }
+}
+//4.interface Segregation Principle (ISP): Clients should not be forced to depend on interfaces they do not use. 
+//Violation of ISP
+interface restaurentEmployee
+{
+void washDishes();
+void serveCustomer();
+void takeOrder();
+void cookFood()
+}
+
+class waiter : RestaurentEmployee
+{
+// now we need to implement all method of RestaurentEmployee interface
+}
+
+///
+interface Iwaiter
+{
+void serveCustomer();
+void takeOrder();
+}
+
+interface Iwaiter
+{
+void serveCustomer();
+void takeOrder();
+}
+
+//5.Dependency Inversion Principle (DIP): High-level modules should not depend on low-level modules. Both should depend on abstractions. This principle promotes loose coupling by ensuring that modules depend on abstractions rather than concrete implementations.
+
