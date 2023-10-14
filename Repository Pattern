@@ -1,0 +1,49 @@
+// Entity
+public class Product
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public decimal Price { get; set; }
+}
+
+// Repository Interface
+public interface IProductRepository
+{
+    Product GetById(int id);
+    IEnumerable<Product> GetAll();
+    void Add(Product product);
+    void Update(Product product);
+    void Delete(int id);
+}
+
+// Concrete Repository
+public class ProductRepository : IProductRepository
+{
+    // Data access logic here (e.g., interacting with a database)
+    // ...
+
+    public Product GetById(int id)
+    {
+        // Implementation to get a product by id
+    }
+
+    public IEnumerable<Product> GetAll()
+    {
+        // Implementation to get all products
+    }
+
+    public void Add(Product product)
+    {
+        // Implementation to add a new product
+    }
+
+    public void Update(Product product)
+    {
+        // Implementation to update a product
+    }
+
+    public void Delete(int id)
+    {
+        // Implementation to delete a product by id
+    }
+}
