@@ -1,0 +1,55 @@
+using System;
+namespace FactoryExample
+{
+ interface Ianimal
+{
+void Sound();
+}
+
+public class Dog:Ianimal
+{
+public void Sound()
+{
+Console.WriteLine("Woof!");
+}
+}
+public class Cat:Ianimal
+{
+public void Sound()
+{
+Console.WriteLine("Meou!");
+}
+}
+interface IanimalFacoty
+{
+    Ianimal Create();
+}
+class DogFactory:IanimalFacoty
+{
+    public Ianimal Create ()
+    {
+   return new  Dog();
+    }
+}
+class CatFactory:IanimalFacoty
+{
+    public Ianimal Create ()
+    {
+   return new  Cat();
+    }
+}
+public class Program
+{
+public static void Main()
+{
+    IanimalFacoty dog= new DogFactory();
+    Ianimal  d =dog.Create();
+//Ianimal  d =new Dog();
+d.Sound();
+ IanimalFacoty cat= new CatFactory();
+    Ianimal  c =cat.Create();
+//Ianimal  d =new Dog();
+c.Sound();
+}
+}
+}
