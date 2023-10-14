@@ -1,0 +1,37 @@
+using System;
+
+namespace Prototype
+{
+public interface  MealPrototype
+{
+   MealPrototype Clone();    
+}
+
+public class BurgerMeal : MealPrototype
+{
+    public string BurgerType { get; set; }
+    // Other properties...
+
+    public override MealPrototype Clone()
+    {
+        return new BurgerMeal
+        {
+            BurgerType = this.BurgerType,
+            // Copy other properties as needed...
+        };
+    }
+}
+
+  class Program
+  {
+    static void Main(string[] args)
+    {
+    BurgerMeal b =new BurgerMeal();
+    b.BurgerType="Extra large";
+     BurgerMeal cloneobj = (BurgerMeal)b.Clone();
+    
+      Console.WriteLine(b.BurgerType);   
+       Console.WriteLine(cloneobj.BurgerType);   
+    }
+  }
+}
