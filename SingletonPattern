@@ -1,0 +1,52 @@
+using System;
+//This is example of singleton design pattern double check type
+namespace Singleton
+{
+public class Singleton
+{
+    private static Singleton instance;
+    private static readonly object lockObject = new object();
+
+    // Private constructor to prevent direct instantiation
+    private Singleton()
+    {
+        // Initialization code here, if needed
+    }
+
+    public static Singleton GetInstance()
+    {
+        if (instance == null)
+        {
+            lock (lockObject)  // Thread-safe check
+            {
+                if (instance == null)
+                {
+                    instance = new Singleton();
+                }
+            }
+        }
+        return instance;
+    }
+
+    // Other methods or properties of the Singleton class can be defined here
+}
+
+// Client code
+class Program
+{
+    static void Main()
+    {
+        // Accessing the Singleton instance
+        Singleton instance1 = Singleton.GetInstance();
+        Singleton instance2 = Singleton.GetInstance();
+
+        // Both instance1 and instance2 will refer to the same Singleton object
+        if (instance1 == instance2)
+        {
+            Console.WriteLine("Both instances are the same Singleton object.");
+        }
+    }
+}
+
+  
+}
